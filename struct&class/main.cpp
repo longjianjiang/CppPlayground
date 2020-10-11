@@ -1,61 +1,40 @@
 //
 //  main.cpp
-//  struct&class
+//  classPrivateStaticMember
 //
-//  Created by longjianjiang on 2020/10/11.
+//  Created by 蒋龙建 on 2020/5/20.
 //  Copyright © 2020 longjianjiang. All rights reserved.
 //
 
 #include <iostream>
 
-using namespace std;
-
-// C中的结构体一般用来包含不同数据类型的一个数据结构，支持嵌套；
-// Cpp中的结构体和类很类似，支持继承，支持成员函数，支持多态；
-// 选择的一个原则是，数据结构型使用结构体，对象型使用类。
-struct SItem {
-    int num;
-};
-
-struct ClassKindStructItem {
-    int num;
-    ClassKindStructItem(int num) {
-        this->num = num;
+class Temp {
+    public :
+    Temp() {
+        ++N;
+        Sum += N;
     }
-    /*
-    virtual void show() {
-        cout << "xxxx\n";
-    }*/
-};
-
-class CItem {
-public:
-    int num;
-    CItem(int num) {
-        this->num = num;
+    
+    static void Reset() {
+        N = 0;
+        Sum = 0;
     }
-    /*
-    virtual void show() {
-        cout << "xxxx\n";
-    }*/
+    
+    static unsigned int GetSum() {
+        return Sum;
+    }
+    
+    private :
+    static unsigned int N;
+    static unsigned int Sum;
 };
 
-void testAccessControl() {
-    // 结构体支持 {} 形式进行初始化；
-    SItem si = {5};
-    cout << "si num = " << si.num << endl;
-    
-    // 类默认不支持，是因为类成员的默认访问控制不是public，改成public，一样支持 {} 初始化；
-    CItem ci = {7};
-    cout << "ci num = " << ci.num << endl;
-    
-    // 结构体或者类包含虚函数后，就不支持 {} 初始化；原因在于此时内存结构多了虚表；
-    ClassKindStructItem cksi = {5};
-}
-
-// 结构体和类的另一个区别在于继承，结构体继承默认是public，类则是private；
+// 初始化类的静态非const需要在class body外面进行设置；(此时虽然是private但是依然可以访问到）
+unsigned int Temp::N = 0;
+unsigned int Temp::Sum = 0;
 
 int main(int argc, const char * argv[]) {
-
+    // insert code here...
+    std::cout << "Hello, World!\n";
     return 0;
 }
