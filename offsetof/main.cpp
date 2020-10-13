@@ -11,6 +11,8 @@
 using namespace std;
 
 // offsetof 宏用来计算结构体成员之间的偏移
+// 所谓成员的偏移其实就是这个成员的地址减去结构体的起始地址；
+// 这个宏的实现将结构的起始地址转成0，那么此时成员的地址就是偏移了；
 #define my_offsetof(type, member) ((size_t)&((type *)0)->member)
 
 struct AA {
